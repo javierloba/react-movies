@@ -1,11 +1,11 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 
 const Header = () => {
     const classes = useStyle();
 
     return (
-        <span className={classes.header}> React movies </span>
+        <Typography className={classes.header}> React movies </Typography>
     )
 }
 
@@ -23,7 +23,11 @@ const useStyle = makeStyles(theme => ({
         paddingBottom: "15px",
         boxShadow: "0px 1px 5px black",
         color: "white",
-        zIndex: "100"
+        zIndex: "100",
+        [theme.breakpoints.down('sm')]: {
+            paddingTop: "15px",
+            fontSize: "6.4vw"
+        }
     }
 }))
 
