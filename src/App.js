@@ -1,18 +1,30 @@
 import Header from './components/Header';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Container } from '@material-ui/core';
 import SimpleBottomNavigation from './components/MainNav';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Trending from './Pages/Trending/Trending';
+import Movies from './Pages/Movies/Movies';
+import Series from './Pages/Series/Series';
+import Search from './Pages/Search/Search';
 
 function App() {
   const classes = useStyle();
 
   return (
-    <div>
+    <BrowserRouter>
       <Header />
       <div className={classes.App}>
-      dvdzsfgzdgd
+        <Container>
+          <Switch>
+            <Route exact path='/' component={Trending} />
+            <Route path='/movies' component={Movies} />
+            <Route path='/series' component={Series} />
+            <Route path='/search' component={Search} />
+          </Switch>
+        </Container>
       </div>
       <SimpleBottomNavigation />
-    </div>
+    </BrowserRouter>
   );
 }
 
@@ -27,7 +39,7 @@ const useStyle = makeStyles(theme => ({
       paddingTop: "100px"
     },
     [theme.breakpoints.up('lg')]: {
-      paddingTop: "180px"
+      paddingTop: "140px"
     },
     [theme.breakpoints.between('sm', "md")]: {
       paddingTop: "120px"

@@ -5,7 +5,7 @@ const Header = () => {
     const classes = useStyle();
 
     return (
-        <Typography className={classes.header}> React movies </Typography>
+        <Typography onClick={() => window.scroll(0,0)} className={classes.header}> 🎬 React Movies 🎬 </Typography>
     )
 }
 
@@ -18,8 +18,8 @@ const useStyle = makeStyles(theme => ({
         justifyContent: "center",
         textTransform: "uppercase",
         backgroundColor: "#39445a",
-        fontFamily: "Montserrat",
         fontSize: "5vw",
+        fontFamily: "Montserrat",
         paddingBottom: "15px",
         boxShadow: "0px 1px 5px black",
         color: "white",
