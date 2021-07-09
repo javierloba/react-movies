@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles, alpha, Typography, Badge } from '@material-ui/core';
 import { img_300, unavailable } from '../config/config';
+import ContentModal from './ContentModal';
 
 const SingleContent = ({
     id,
@@ -14,7 +15,7 @@ const SingleContent = ({
     const classes = useStyle();
 
     return (
-        <div className={classes.media}>
+        <ContentModal className={classes.media}>
             <Badge badgeContent={vote_average} color={vote_average > 6 ? "primary" : "secondary"} />
             <img className={classes.poster} src={ poster ? `${img_300}/${poster}` : `${unavailable}`} alt={title} />
             <Typography variant="h6" className={classes.title}>{title}</Typography>
@@ -23,7 +24,7 @@ const SingleContent = ({
                     {date}
                 </span>
             </span>
-        </div>
+        </ContentModal>
     )
 }
 

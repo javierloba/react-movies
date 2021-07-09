@@ -41,7 +41,7 @@ const Movies = () => {
             setPage = {setPage}
             />
             <div className={classes.movies}>
-                { content && content.map((c) => 
+                { content && content.map((c) => (
                     <SingleContent 
                     key = {c.id} 
                     id = {c.id} 
@@ -51,7 +51,7 @@ const Movies = () => {
                     media_type = "movie"
                     vote_average = {c.vote_average}
                     />
-                )}
+                ))}
             </div>
             {numOfPages > 1 && (
                 <CustomPagination setPage={setPage} numOfPages={numOfPages}/>

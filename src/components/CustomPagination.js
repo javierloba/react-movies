@@ -5,7 +5,7 @@ import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
 const darkTheme = createTheme({
     palette: {
       type: "dark",
-    },
+    }
   });
 
 const CustomPagination = ({ setPage, numOfPages = 10 }) => {
