@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
+import { img_500, unavailable, unavailableLandscape } from "../config/config";
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import axios from 'axios';
+import { Button } from '@material-ui/core';
+import YouTubeIcon from "@material-ui/icons/YouTube";
+import Carousel from './Carousel';
 
-export default function ContentModal({ children }) {
+export default function ContentModal({ children, media_type, id }) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [content, setContent] = useState();
+  const [video, setVideo] = useState();
 
   const handleOpen = () => {
     setOpen(true);
@@ -16,11 +23,33 @@ export default function ContentModal({ children }) {
     setOpen(false);
   };
 
+  const fetchData = async () => {
+    const { data } = await axios.get(
+      `https://api.themoviedb.org/3/${media_type}/${id}?api_key=${process.env.REACT_APP_MOVIES_KEY}&language=en-US`
+    );
+
+    setContent(data);
+  };
+
+  const fetchVideo = async () => {
+    const { data } = await axios.get(
+      `https://api.themoviedb.org/3/${media_type}/${id}/videos?api_key=${process.env.REACT_APP_MOVIES_KEY}&language=en-US`
+    );
+
+    setVideo(data.results[0]?.key);
+  };
+
+  useEffect(() => {
+    fetchData();
+    fetchVideo();
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <div>
-      <button type="button" className={classes.media} onClick={handleOpen}>
+      <div type="button" className={classes.media} onClick={handleOpen}>
         {children}
-      </button>
+      </div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -34,10 +63,60 @@ export default function ContentModal({ children }) {
         }}
       >
         <Fade in={open}>
-          <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">react-transition-group animates me.</p>
-          </div>
+          {content && (
+            <div className={classes.paper}>
+                <div className={classes.contentModal}>
+                    <img 
+                    className={classes.content_portrait}
+                    src={
+                        content.poster_path ? `${img_500}/${content.poster_path}` : unavailable
+                    }
+                    alt={content.name || content.title} 
+                    />
+
+                    <img 
+                    className={classes.content_landscape}
+                    src={
+                        content.backdrop_path ? `${img_500}/${content.backdrop_path}` : unavailableLandscape
+                    }
+                    alt={content.name || content.title} 
+                    />
+
+                    <div className={classes.content_about}>
+                        <span className={classes.content_title}>
+                            { content.name || content.title } 
+                            (
+                                {(
+                                    content.first_air_date || content.release_date || "-----"
+                                ).substring(0, 4)}
+                            )
+                        </span>
+
+                        {content.tagline && (
+                            <i className={classes.tagline}>{content.tagline}</i>
+                        )}
+        
+                        <span className={classes.content_description}>
+                            {content.overview}
+                        </span>
+
+                        <div>
+                            <Carousel media_type={media_type} id={id} />
+                        </div>
+
+                        <Button
+                        variant="contained"
+                        startIcon={<YouTubeIcon />}
+                        color="secondary"
+                        target="__blank"
+                        href={`https://www.youtube.com/watch?v=${video}`}
+                        >
+                            Watch the Trailer
+                        </Button>
+                    </div>
+                </div>
+            </div>
+          )}
         </Fade>
       </Modal>
     </div>
@@ -49,6 +128,23 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+    },
+    contentModal: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        height: "100%",
+        width: "100%",
+        overflowY: "scroll",
+        scrollbarWidth: "none",
+        [theme.breakpoints.up('md')]: {
+            flexDirection: "row",
+            justifyContent: "space-around",
+            padding: "10px 0"
+        },
+        "&::-webkit-scrollbar": {
+            display: "none"
+        }
     },
     paper: {
       width:  "90%",
@@ -73,9 +169,70 @@ const useStyles = makeStyles((theme) => ({
         "&:hover": {
             backgroundColor: alpha('#fff', .75),
             color: alpha('#000', .75)
-        },
-        [theme.breakpoints.down('sm')]: {
-            width: "46%"
         }
+        
+    },
+    content_landscape: {
+        objectFit: "contain",
+        borderRadius: "10px",
+        [theme.breakpoints.up('md')]: {
+            display: "none"
+        }
+    },
+    content_portrait: {
+        display: "none",
+        objectFit: "contain",
+        borderRadius: "10px",
+        [theme.breakpoints.up('md')]: {
+            display: "flex",
+            width: "38%"
+        }
+    },
+    tagline: {
+        paddingBottom: "10px",
+        alignSelf: "center",
+    },
+    content_about: {
+        padding: "10px",
+        width: "95%",
+        height: "90%",
+        display: "flex",
+        flexDirection: "column",
+        fontFamily: "Roboto",
+        justifyContent: "space-evenly",
+        fontWeight: "300",
+        [theme.breakpoints.up('md')]: {
+            width: "58%",
+            padding: "0",
+            height: "100%"
+        }
+    },
+    content_title: {
+        height: "12%",
+        fontSize: "5vw",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        [theme.breakpoints.up('md')]: {
+            fontSize: "3.5vw"
+        }
+    },
+    content_description: {
+        display: "flex",
+        height: "40%",
+        overflowY: "scroll",
+        padding: "15px",
+        borderRadius: "20px",
+        scrollbarWidth: "thin",
+        boxShadow: "inset 0 0 5px #000000",
+        textAlign: "justify",
+        [theme.breakpoints.up('md')]: {
+            fontSize: "22px"
+        },
+        "&::-webkit-scrollbar": {
+            display: "none"
+        }
+
     }
+    
   }));

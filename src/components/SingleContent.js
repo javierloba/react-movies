@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles, alpha, Typography, Badge } from '@material-ui/core';
+import { makeStyles, Typography, Badge } from '@material-ui/core';
 import { img_300, unavailable } from '../config/config';
 import ContentModal from './ContentModal';
 
@@ -15,7 +15,7 @@ const SingleContent = ({
     const classes = useStyle();
 
     return (
-        <ContentModal className={classes.media}>
+        <ContentModal media_type= {media_type} id={id}>
             <Badge badgeContent={vote_average} color={vote_average > 6 ? "primary" : "secondary"} />
             <img className={classes.poster} src={ poster ? `${img_300}/${poster}` : `${unavailable}`} alt={title} />
             <Typography variant="h6" className={classes.title}>{title}</Typography>
@@ -29,24 +29,6 @@ const SingleContent = ({
 }
 
 const useStyle = makeStyles(theme => ({
-    media: {
-        display: "flex",
-        flexDirection: "column",
-        width: "200px",
-        padding: "5px",
-        margin: "5px 0",
-        backgroundColor: "#282c34",
-        borderRadius: "10px",
-        position: "relative",
-        fontFamily: "Montserrat",
-        "&:hover": {
-            backgroundColor: alpha('#fff', .75),
-            color: alpha('#000', .75)
-        },
-        [theme.breakpoints.down('sm')]: {
-            width: "46%"
-        }
-    },
     poster: {
         borderRadius: "10px"
     },
