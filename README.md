@@ -17,3 +17,5 @@ La aplicación nos permite:
 - Visualización del modal con título, poster principal y secundario, tagline, descripción y carousel de créditos, más link a YouTube para ver el trailer.
 - Sección de películas y series con búsqueda por género.
 - Buscador de películas y series por título.
+
+https://react-movies-jlg.herokuapp.com/
