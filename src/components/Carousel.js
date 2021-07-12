@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
@@ -66,11 +66,11 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         objectFit: "contain",
-        padding: "10px"
+        padding: theme.spacing(1)
     },
     carouselItem_img: {
         borderRadius: "10px",
-        marginBottom: "5px",
+        marginBottom: theme.spacing(1),
         boxShadow: "0px 0px 5px #000"
     }
     

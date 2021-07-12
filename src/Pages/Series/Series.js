@@ -1,6 +1,6 @@
 import { makeStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CustomPagination from '../../components/CustomPagination';
 import Genres from '../../components/Genres';
 import SingleContent from '../../components/SingleContent';
@@ -68,7 +68,7 @@ const useStyle = makeStyles(theme => ({
         justifyContent: "center",
         fontFamily: "Montserrat",
         fontSize: "4vw",
-        padding: "4px",
+        padding: theme.spacing(1),
         borderRadius: "50px",
         color: "#fff"
     },
@@ -79,4 +79,4 @@ const useStyle = makeStyles(theme => ({
     }
 }))
 
-export default Series
+export default Series;

@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { alpha, makeStyles } from '@material-ui/core/styles';
-import { img_500, unavailable, unavailableLandscape } from "../config/config";
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import { img_500, unavailable, unavailableLandscape } from '../config/config';
 import axios from 'axios';
-import { Button } from '@material-ui/core';
-import YouTubeIcon from "@material-ui/icons/YouTube";
+import { Button, Fade, Backdrop, Modal } from '@material-ui/core';
+import YouTubeIcon from '@material-ui/icons/YouTube';
 import Carousel from './Carousel';
 
 export default function ContentModal({ children, media_type, id }) {
@@ -130,21 +127,21 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'center',
     },
     contentModal: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        height: "100%",
-        width: "100%",
-        overflowY: "scroll",
-        scrollbarWidth: "none",
-        [theme.breakpoints.up('md')]: {
-            flexDirection: "row",
-            justifyContent: "space-around",
-            padding: "10px 0"
-        },
-        "&::-webkit-scrollbar": {
-            display: "none"
-        }
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      height: "100%",
+      width: "100%",
+      overflowY: "scroll",
+      scrollbarWidth: "none",
+      [theme.breakpoints.up('md')]: {
+          flexDirection: "row",
+          justifyContent: "space-around",
+          padding: theme.spacing(2, 0)
+      },
+      "&::-webkit-scrollbar": {
+          display: "none"
+      }
     },
     paper: {
       width:  "90%",
@@ -160,8 +157,8 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         flexDirection: "column",
         width: "200px",
-        padding: "5px",
-        margin: "5px 0",
+        padding: theme.spacing(.6),
+        margin: theme.spacing(1, 0),
         backgroundColor: "#282c34",
         borderRadius: "10px",
         position: "relative",
@@ -185,7 +182,7 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: "10px",
         [theme.breakpoints.up('md')]: {
             display: "flex",
-            width: "38%"
+            width: "40%"
         }
     },
     tagline: {
@@ -202,7 +199,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "space-evenly",
         fontWeight: "300",
         [theme.breakpoints.up('md')]: {
-            width: "58%",
+            width: "55%",
             padding: "0",
             height: "100%"
         }
@@ -213,15 +210,16 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        marginBottom: theme.spacing(1),
         [theme.breakpoints.up('md')]: {
-            fontSize: "3.5vw"
+            fontSize: "3vw"
         }
     },
     content_description: {
         display: "flex",
         height: "40%",
         overflowY: "scroll",
-        padding: "15px",
+        padding: theme.spacing(2.5),
         borderRadius: "20px",
         scrollbarWidth: "thin",
         boxShadow: "inset 0 0 5px #000000",

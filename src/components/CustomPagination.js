@@ -1,5 +1,4 @@
-import React from 'react';
-import Pagination from "@material-ui/lab/Pagination";
+import Pagination from '@material-ui/lab/Pagination';
 import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
 
 const darkTheme = createTheme({
@@ -37,8 +36,8 @@ const useStyle = makeStyles(theme => ({
         width: "100%",
         display: "flex",
         justifyContent: "center",
-        marginTop: "10px"
+        marginTop: theme.spacing(2)
     }
 }))
 
-export default CustomPagination
+export default CustomPagination;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, createTheme, makeStyles, Tabs, Tab, TextField, ThemeProvider, Typography } from '@material-ui/core';
 import SearchIcon from "@material-ui/icons/Search"
 import axios from 'axios';
@@ -102,7 +102,7 @@ const useStyle = makeStyles(theme => ({
         justifyContent: "center",
         fontFamily: "Montserrat",
         fontSize: "4vw",
-        padding: "4px",
+        padding: theme.spacing(1),
         borderRadius: "50px",
         color: "#fff"
     },
@@ -115,14 +115,14 @@ const useStyle = makeStyles(theme => ({
         flex: "1"
     },
     searchButton: {
-        marginLeft: "10px"
+        marginLeft: theme.spacing(2)
     },
     searchContainer: {
         display: "flex",
-        margin: "15px 0"
+        margin: theme.spacing(2, 0)
     },
     tabs: {
-        paddingBottom: "5px"
+        paddingBottom: theme.spacing(1)
     },
     tab: {
         width: "50%"

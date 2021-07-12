@@ -1,6 +1,6 @@
 import { Chip, makeStyles } from '@material-ui/core';
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 
 const Genres = ({
     selectedGenres,
@@ -71,11 +71,11 @@ const Genres = ({
 
 const useStyle = makeStyles(theme => ({
     genres: {
-        padding: "6px 0"
+        padding: theme.spacing(2, 0)
     },
     chips: {
-        margin: "2px"
+        margin: theme.spacing(.4)
     }
 }))
 
-export default Genres
+export default Genres;

@@ -1,4 +1,3 @@
-import React from 'react';
 import { makeStyles, Typography, Badge } from '@material-ui/core';
 import { img_300, unavailable } from '../config/config';
 import ContentModal from './ContentModal';
@@ -36,15 +35,15 @@ const useStyle = makeStyles(theme => ({
         width: "100%",
         textAlign: "center",
         fontSize: "17px",
-        padding: "8px 0"
+        padding: theme.spacing(2, 0)
     },
     subtitle: {
         display: "flex",
         justifyContent: "space-between",
-        padding: "0 3px 3px 3px",
+        padding: theme.spacing(0, 1, 1, 1),
         fontWeight: "200"
     }
 
 }))
 
-export default SingleContent
+export default SingleContent;

@@ -67,7 +67,7 @@ const useStyle = makeStyles(theme => ({
         justifyContent: "center",
         fontFamily: "Montserrat",
         fontSize: "4vw",
-        padding: "4px",
+        padding: theme.spacing(1),
         borderRadius: "50px",
         color: "#fff"
     },
@@ -78,4 +78,4 @@ const useStyle = makeStyles(theme => ({
     }
 }))
 
-export default Movies
+export default Movies;

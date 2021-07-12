@@ -1,9 +1,8 @@
 import { makeStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CustomPagination from '../../components/CustomPagination';
 import SingleContent from '../../components/SingleContent';
-require('dotenv').config();
 
 const Trending = () => {
     const [page, setPage] = useState(1)
@@ -55,10 +54,10 @@ const useStyle = makeStyles(theme => ({
         justifyContent: "center",
         fontFamily: "Montserrat",
         fontSize: "4vw",
-        padding: "4px",
+        padding: theme.spacing(1),
         borderRadius: "50px",
         color: "#fff"
     }
 }))
 
-export default Trending
+export default Trending;

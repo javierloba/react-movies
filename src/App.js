@@ -32,7 +32,7 @@ const useStyle = makeStyles(theme => ({
   App: {
     minHeight: "100vh",
     backgroundColor: "#39445a",
-    color: "white",
+    color: "#fff",
     paddingTop: "130px",
     paddingBottom: "70px",
     [theme.breakpoints.down('sm')]: {

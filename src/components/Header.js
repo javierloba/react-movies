@@ -1,11 +1,10 @@
-import React from 'react';
 import { makeStyles, Typography } from '@material-ui/core';
 
 const Header = () => {
     const classes = useStyle();
 
     return (
-        <Typography onClick={() => window.scroll(0,0)} className={classes.header}> 🎬 React Movies 🎬 </Typography>
+        <Typography onClick={() => window.scroll(0,0)} className={classes.header}> React Movies </Typography>
     )
 }
 
@@ -25,10 +24,10 @@ const useStyle = makeStyles(theme => ({
         color: "white",
         zIndex: "100",
         [theme.breakpoints.down('sm')]: {
-            paddingTop: "15px",
+            paddingTop: theme.spacing(2),
             fontSize: "6.4vw"
         }
     }
 }))
 
-export default Header
+export default Header;
